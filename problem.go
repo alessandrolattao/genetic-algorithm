@@ -9,6 +9,7 @@ import "fmt"
 
 const MaxWeight = 10_000 // 10,000 kg
 
+// Item represents a cargo item with a name, weight in kg, and a mission value.
 type Item struct {
 	Name   string
 	Weight int // kg
@@ -100,6 +101,8 @@ var items = []Item{
 
 const GenomeSize = 64
 
+// fitness evaluates a genome by summing the value of selected items.
+// Returns 0 if the total weight exceeds the container capacity (invalid solution).
 func fitness(genome uint64) int {
 	totalWeight := 0
 	totalValue := 0
@@ -118,6 +121,8 @@ func fitness(genome uint64) int {
 	return totalValue
 }
 
+// printSolution prints the best individual's stats for a given generation.
+// When completed is true, it also prints the full list of selected items.
 func printSolution(best Individual, gen int, completed bool) {
 	fmt.Printf("=== Generation %d | Fitness: %d ===\n", gen, best.Fitness)
 
